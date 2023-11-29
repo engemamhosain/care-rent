@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<!--
+To change this license header, choose License Headers in Project Properties.
+To change this template file, choose Tools | Templates
+and open the template in the editor.
+-->
+<html ng-app="myApp">
+    <head>
+        <title>TODO supply a title</title>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.6.4/angular.min.js"></script>
+    </head>
+    <body>
+       
+       
+        <div ng-controller="myController">
+           
+        <form>
+        <input type="button" ng-click="selectData()">     
+        </form>
+            <table>
+                <tbody>
+                  
+                     <tr ng-repeat="d in data">
+                         <td>{{d}}</td>      
+                    <td>{{d.adminEmail}}</td>
+                      
+                </tr>
+                </tbody>
+               
+            </table>
+        </div>
+        
+        
+        
+        
+        <script>
+            
+            angular.module("myApp",[])
+                    .controller("myController",function($scope,$http){
+                        
+                       $scope.selectData=function(){
+                             $http({
+                        method: 'post',
+                        url: 'test.php.php'
+                    }).then(function successCallback(data) {
+                        $scope.data = data.data;
+                        
+                    }, function errorCallback(response) {
+                        console.log(response);
+                    });
+                                      
+                       }
+                    });
+                    
+                 
+                    
+        </script>
+    </body>
+</html>
